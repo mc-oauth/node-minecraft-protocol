@@ -56,10 +56,10 @@ module.exports = function (client, server, options) {
         const publicPEM = mcPubKeyToPem(packet.signature.publicKey)
         const signable = packet.signature.timestamp + publicPEM // (expires at + publicKey)
 
-        if (!crypto.verify('RSA-SHA1', Buffer.from(signable, 'utf8'), mojangPubKey, packet.signature.signature)) {
+        /*if (!crypto.verify('RSA-SHA1', Buffer.from(signable, 'utf8'), mojangPubKey, packet.signature.signature)) {
           raise('multiplayer.disconnect.invalid_public_key_signature')
           return
-        }
+        }*/
         client.profileKeys = { public: publicKey, publicPEM }
       } catch (err) {
         raise('multiplayer.disconnect.invalid_public_key')
